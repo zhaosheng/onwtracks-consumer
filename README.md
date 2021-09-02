@@ -5,14 +5,14 @@
 ```bash
 docker build -f Dockerfile -t owntracks:dev .
 ```
-## Development
+## Deployment
 
 ```bash
- docker run -it \
- -v /tmp/datadrive/export_csv:/data \
+ docker run -d \
+ -v /datadrive/export_csv:/data \
  -e MQTT_USER=web_user \
- -e MQTT_PASSWORD=web_user \
+ -e MQTT_PASSWORD=xx \
  -e MQTT_HOST=timeline.westus2.cloudapp.azure.com \
  -e STORE_FOLDER=/data \
- owntracks-export:dev
+ zhaosheng/owntracks-export-csv:dev
 ```
