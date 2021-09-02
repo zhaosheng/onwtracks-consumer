@@ -8,7 +8,6 @@ import paho.mqtt.client as mqtt
 
 def on_connect(client:mqtt.Client, userdata, flags, rc):
     """Function to connect to MQTT"""
-    print('on_connect!')
     client.subscribe("owntracks/+/+")
 
 def on_message(client: mqtt.Client, userdata, msg: mqtt.MQTTMessage):
@@ -16,7 +15,6 @@ def on_message(client: mqtt.Client, userdata, msg: mqtt.MQTTMessage):
     print(f"on_message: {topic}")
     try:
         data = json.loads(msg.payload)
-        print(data)
         today_str = dt.date.strftime(dt.date.today(), '%Y%m%d')
         output_folder = os.environ.get('STORE_FOLDER', '/tmp')
         f = f"{output_folder}/owntracks_export_{today_str}.csv"
